@@ -1,0 +1,33 @@
+{
+	"character": {
+		"text": "Personaje",
+		"filters": {
+			"id": "ID",
+			"name": "Nombre",
+			"status": "Estado",
+			"species": "Especie",
+			"type": "Tipo",
+			"gender": "Género"
+		}
+	},
+
+	"location": {
+		"text": "Localización",
+		"filters": {
+			"id": "ID",
+			"name": "Nombre",
+			"type": "Tipo",
+			"dimension": "Dimensión"
+		}
+	},
+
+	"episode": {
+		"text": "Episodio",
+		"filters": {
+			"id": "ID",
+			"name": "Nombre",
+			"episode": "Código Episodio"
+		}
+	}
+
+}
