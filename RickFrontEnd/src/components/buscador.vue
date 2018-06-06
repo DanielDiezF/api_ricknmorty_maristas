@@ -12,11 +12,8 @@
 </template>
 
 <script>
-  import store from '../store';
-
   export default {
     name: 'Buscador',
-    store,
     data () {
       return {
         tipos: this.$store.getters.tipos,
@@ -28,11 +25,11 @@
     },
     methods: {
       buscar: function() {
-      let url = `http://localhost:3773/${this.tipo_seleccionado}/${this.filtro_seleccionado}/${this.termino}`;
-      this.$store.dispatch('buscar', url)
+        let url = `http://localhost:3773/${this.tipo_seleccionado}/${this.filtro_seleccionado}/${this.termino}`;
+        this.$store.dispatch('buscar', url)
+      }
     }
   }
-}
 
 </script>
 

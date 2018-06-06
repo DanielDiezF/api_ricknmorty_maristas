@@ -52,8 +52,9 @@ const store = () => new Vuex.Store({
     setRespuesta(state, resp) {
       console.log(state)
       console.log(resp)
-      state.respuesta = resp
-      // Vue.set(state, 'respuesta', resp);
+      // state.respuesta = resp
+      Vue.set(state, 'respuesta', resp);
+      console.log(state.respuesta.length)
       console.log(state)
     }
   },
@@ -62,7 +63,6 @@ const store = () => new Vuex.Store({
       console.log('buscar')
       axios.get(url)
       .then(res => {
-        console.log('respuesta')
         context.commit('setRespuesta', res.data);
       })
       .catch(err => {

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <p v-for="personaje in this.$store.getters.respuesta">{{ personaje.name }}</p>
+    {{this.$store.state.respuesta.length}}
+    <p v-for="personaje in this.$store.state.respuesta">{{ personaje.name }}</p>
   </div>
 </template>
 

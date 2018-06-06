@@ -7,13 +7,11 @@
 </template>
 
 <script>
-  import store from '../store';
   import Buscador from '../components/buscador.vue'
   import Resultados from '../components/resultados.vue'
 
   export default {
     name: 'RickAPI',
-    store,
     components: {
       Buscador,
       Resultados
@@ -22,7 +20,7 @@
       return{}
     },
     methods: {
-      
+
     }
   }
 
