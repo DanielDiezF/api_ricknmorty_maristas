@@ -26,7 +26,7 @@
     methods: {
       buscar: function() {
         let url = `http://localhost:3773/${this.tipo_seleccionado}/${this.filtro_seleccionado}/${this.termino}`;
-        this.$store.dispatch('buscar', url)
+        this.$store.dispatch('buscar', url);
       }
     }
   }

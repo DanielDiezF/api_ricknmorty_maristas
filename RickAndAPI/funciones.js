@@ -15,33 +15,38 @@ MongoClient.connect(dburl, { useNewUrlParser: true }).then(function(db) {
 
 function checkDB(tipo, filtro, termino) {
 	query = generarQuery(api[tipo], filtro, termino);
+	let myQuery = `/${tipo}/${filtro}/${termino}`;
+	console.log(myQuery);
 
 	let byId = false;
 	if (filtro === 'id'){
 		byId = true;
 	}
 
-	return collection.findOne({"query": query})
-	.then(function(res) {
-		if(res){
-			console.log('Algo')
-			return res.datos;
-		}else{
-			console.log('Nada')
-			return consultApi(query, byId)
-		}
-	})
+	return buscarDB(myQuery, byId);
+	// return collection.findOne({"query": myQuery})
+	// .then(function(res) {
+	// 	if(res){
+	// 		console.log(res);
+	// 		return res;
+	// 	}else{
+	// 		console.log('Nada')
+	// 		return consultApi(query, byId, myQuery);
+	// 	}
+	// })
 }
 
-function consultApi(query, byId) {
+function consultApi(query, byId, myQuery) {
 	return axios.get(query)
 	.then(function(res){
 		if(byId) {
-			almacenarQuery(query, res.data);
-			return res.data;
+			let datos = {info: {count: 1, pages: 1}, results: [res.data]};
+			almacenarQuery(myQuery, datos);
+			return buscarDB(myQuery, byId);
 		}
-		almacenarQuery(query, res.data.results);
-		return res.data.results;
+		almacenarQuery(myQuery, res.data);
+		console.log(res.data);
+		return buscarDB(myQuery, byId);
 	})
 	.catch(function(err) {
 		console.log(err);
@@ -60,5 +65,18 @@ function generarQuery(url, filtro, termino) {
 }
 
 function almacenarQuery(query, datos) {
-	collection.insertOne({"query":query, "datos":datos});
+	collection.insertOne({"query":query, "data":datos});
+}
+
+function buscarDB (myQuery, byId){
+	return collection.findOne({"query": myQuery})
+	.then(function(res) {
+		if(res){
+			console.log(res);
+			return res;
+		}else{
+			console.log('Nada')
+			return consultApi(query, byId, myQuery);
+		}
+	})
 }

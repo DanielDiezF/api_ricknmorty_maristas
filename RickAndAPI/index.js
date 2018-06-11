@@ -28,26 +28,6 @@ app.get('/:tipo/:filtro/:termino', function (req, res) {
 	});
 });
 
-// app.get('/location/:filtro/:termino', function (req, res) {
-// 	funciones.checkDB('location', req.params.filtro, req.params.termino)
-// 	.then(function(result){
-// 		res.send(result);
-// 	})
-// 	.catch(function(err){
-// 		console.log(err);
-// 	});
-// });
-
-// app.get('/episode/:filtro/:termino', function (req, res) {
-// 	funciones.checkDB('episode', req.params.filtro, req.params.termino)
-// 	.then(function(result){
-// 		res.send(result);
-// 	})
-// 	.catch(function(err){
-// 		console.log(err);
-// 	});
-// });
-
 app.listen(3773, function () {
 	console.log('Escuchando en el puerto 3773!');
 });

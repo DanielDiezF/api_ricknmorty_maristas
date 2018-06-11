@@ -46,28 +46,29 @@ const store = () => new Vuex.Store({
         {value: "episode", text: "Código episodio"}
       ]
     },
-    respuesta: []
+    respuesta: null
   },
   mutations: {
     setRespuesta(state, resp) {
-      console.log(state)
       console.log(resp)
-      // state.respuesta = resp
-      Vue.set(state, 'respuesta', resp);
-      console.log(state.respuesta.length)
-      console.log(state)
+      Vue.set(state, 'respuesta', resp.data);
     }
   },
   actions: {
     buscar (context, url) {
-      console.log('buscar')
       axios.get(url)
       .then(res => {
-        context.commit('setRespuesta', res.data);
+        context.commit('setRespuesta', res);
       })
       .catch(err => {
         console.log(err);
       })
+    },
+    gotoPage (context, page) {
+      let queryLimpia = this.state.respuesta.query.split("&")[0];
+      let url = 'http://localhost:3773'+queryLimpia+'&page='+page;
+      console.log(url);
+      context.dispatch('buscar', url);
     }
   },
   getters: {
